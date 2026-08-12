@@ -1,0 +1,17 @@
+:root {
+  --color-background: #fafafa;
+  --color-surface: #d9d9d9;
+  --color-input: #f7f7f7;
+  --color-text-primary: #111111;
+  --color-text-secondary: #333333;
+  --color-action: #171717;
+  --color-action-text: #ffffff;
+  --color-border: #c7c7c7;
+  --color-focus: #111111;
+
+  --font-family-sans: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --radius-card: 1.5rem;
+  --radius-control: 0.75rem;
+  --shadow-card: 0 1.25rem 3.75rem rgb(17 17 17 / 8%);
+}
