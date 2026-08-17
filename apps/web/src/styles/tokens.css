@@ -1,6 +1,7 @@
 :root {
   --plura-purple-light: #f9f6ff;
   --plura-purple-medium: #d5cbf4;
+  --plura-purple-accent: #977cec;
   --plura-purple-dark: #3f3a4f;
   --plura-orange-light: #fff7f0;
   --plura-orange-medium: #f1d3b8;
@@ -9,16 +10,17 @@
 
   --color-background: #f8f6f4;
   --color-surface: #ffffff;
-  --color-surface-soft: #f3f0f5;
+  --color-surface-soft: var(--plura-purple-light);
   --color-input: #ffffff;
-  --color-text-primary: #24212c;
-  --color-text-secondary: #5f596b;
-  --color-text-muted: #7d7688;
+  --color-text-primary: var(--plura-purple-dark);
+  --color-text-secondary: #655f70;
+  --color-text-muted: #81798d;
+  --color-brand-emphasis: var(--plura-purple-accent);
   --color-action: var(--plura-purple-dark);
   --color-action-hover: #2f2b3b;
   --color-action-text: #ffffff;
-  --color-border: #ddd8e2;
-  --color-border-strong: #bdb5c7;
+  --color-border: #e4dfea;
+  --color-border-strong: #c9c0d3;
   --color-focus: #6e55b7;
   --color-success: #236a4b;
   --color-success-soft: #e7f5ee;
@@ -27,9 +29,18 @@
   --color-danger: #9f3434;
   --color-danger-soft: #fff0f0;
 
-  --font-family-sans: Rubik, ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --radius-card: 1rem;
-  --radius-control: 0.75rem;
-  --shadow-card: 0 1rem 3rem rgb(63 58 79 / 8%);
+  --color-chart-primary: var(--plura-purple-accent);
+  --color-chart-secondary: var(--plura-orange-accent);
+  --color-chart-dark: var(--plura-purple-dark);
+  --color-chart-soft: var(--plura-purple-medium);
+  --color-chart-grid: #e7e1ec;
+  --color-chart-muted: #81798d;
+
+  --font-family-sans: "Rubik Variable", Rubik, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --radius-card: 1.25rem;
+  --radius-control: 0.875rem;
+  --radius-pill: 999px;
+  --shadow-card: 0 1.25rem 3.5rem rgb(63 58 79 / 9%);
+  --shadow-card-hover: 0 1.5rem 4rem rgb(63 58 79 / 13%);
 }

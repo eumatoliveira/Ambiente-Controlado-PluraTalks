@@ -14,6 +14,7 @@ import type {
   ChartStatus,
   ParticipationHistoryPoint,
 } from '../data/dashboardMockData';
+import { chartPalette } from '../../../styles/chartPalette';
 import { ChartState } from './ChartState';
 
 const periods = ['Semanal', 'Mensal', 'Trimestral', 'Anual'] as const;
@@ -54,13 +55,13 @@ export function EngagementAreaChart({
         <div className="chart-canvas" aria-label="Gráfico de participação e engajamento">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data} margin={{ top: 16, right: 12, left: -20, bottom: 0 }}>
-              <CartesianGrid stroke="#E1E4E8" strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fill: '#566274', fontSize: 12 }} />
-              <YAxis domain={[50, 100]} axisLine={false} tickLine={false} tick={{ fill: '#8C96A5', fontSize: 12 }} />
+              <CartesianGrid stroke={chartPalette.grid} strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fill: chartPalette.axis, fontSize: 12 }} />
+              <YAxis domain={[50, 100]} axisLine={false} tickLine={false} tick={{ fill: chartPalette.muted, fontSize: 12 }} />
               <Tooltip />
               <Legend iconType="circle" />
-              <Area type="monotone" dataKey="participation" name="Participação" stroke="#3F4959" strokeWidth={2.5} fill="#C7CFD9" fillOpacity={0.42} isAnimationActive={false} />
-              <Area type="monotone" dataKey="engagement" name="Engajamento" stroke="#929EAD" strokeWidth={2.5} fill="transparent" isAnimationActive={false} />
+              <Area type="monotone" dataKey="participation" name="Participação" stroke={chartPalette.purpleDark} strokeWidth={2.5} fill={chartPalette.purpleSoft} fillOpacity={0.52} isAnimationActive={false} />
+              <Area type="monotone" dataKey="engagement" name="Engajamento" stroke={chartPalette.purple} strokeWidth={2.5} fill="transparent" isAnimationActive={false} />
             </AreaChart>
           </ResponsiveContainer>
         </div>

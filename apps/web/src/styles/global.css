@@ -6,12 +6,22 @@ html {
   color: var(--color-text-primary);
   background: var(--color-background);
   font-family: var(--font-family-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   min-width: 20rem;
   min-height: 100vh;
   margin: 0;
+  background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--plura-purple-medium);
+  color: var(--plura-purple-dark);
 }
 
 button,

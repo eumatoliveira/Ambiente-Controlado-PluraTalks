@@ -13,6 +13,7 @@ import type {
   ChartStatus,
   OrganizationalFactor,
 } from '../data/dashboardMockData';
+import { chartPalette } from '../../../styles/chartPalette';
 import { ChartState } from './ChartState';
 
 type OrganizationalFactorsChartProps = {
@@ -39,11 +40,11 @@ export function OrganizationalFactorsChart({
         <div className="factor-chart-canvas">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data} layout="vertical" margin={{ top: 0, right: 24, left: 16, bottom: 0 }}>
-              <CartesianGrid stroke="#E1E4E8" strokeDasharray="3 3" horizontal={false} />
-              <XAxis type="number" domain={[0, 4]} axisLine={false} tickLine={false} tick={{ fill: '#8C96A5', fontSize: 11 }} />
-              <YAxis type="category" dataKey="name" width={104} axisLine={false} tickLine={false} tick={{ fill: '#566274', fontSize: 12 }} />
+              <CartesianGrid stroke={chartPalette.grid} strokeDasharray="3 3" horizontal={false} />
+              <XAxis type="number" domain={[0, 4]} axisLine={false} tickLine={false} tick={{ fill: chartPalette.muted, fontSize: 11 }} />
+              <YAxis type="category" dataKey="name" width={104} axisLine={false} tickLine={false} tick={{ fill: chartPalette.axis, fontSize: 12 }} />
               <Tooltip />
-              <Bar dataKey="value" name="Score demonstrativo" fill="#657184" radius={[0, 6, 6, 0]} isAnimationActive={false} />
+              <Bar dataKey="value" name="Score demonstrativo" fill={chartPalette.purple} radius={[0, 8, 8, 0]} isAnimationActive={false} />
             </BarChart>
           </ResponsiveContainer>
         </div>

@@ -52,10 +52,10 @@ export const dashboardMockData = {
     delta: '+2,3',
     label: 'Saudável',
     segments: [
-      { label: 'Favorável', value: 44, color: '#657184' },
-      { label: 'Neutro', value: 25, color: '#929EAD' },
-      { label: 'Atenção', value: 20, color: '#F6D58C' },
-      { label: 'Crítico', value: 11, color: '#F2B6B8' },
+      { label: 'Favorável', value: 44, color: '#977CEC' },
+      { label: 'Neutro', value: 25, color: '#D5CBF4' },
+      { label: 'Atenção', value: 20, color: '#FEA85B' },
+      { label: 'Crítico', value: 11, color: '#9F3434' },
     ],
   },
   organizationalFactors: [

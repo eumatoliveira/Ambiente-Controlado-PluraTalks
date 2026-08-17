@@ -1,0 +1,20 @@
+.brand-lockup {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.brand-lockup img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.brand-lockup .brand-lockup__wordmark {
+  display: block;
+}
+
+.brand-lockup .brand-lockup__mark {
+  display: none;
+}

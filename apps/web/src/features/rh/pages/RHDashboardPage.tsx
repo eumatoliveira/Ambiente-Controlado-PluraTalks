@@ -18,6 +18,7 @@ export function RHDashboardPage() {
     <RHLayout>
       <header className="rh-page-header">
         <div>
+          <p className="rh-page-eyebrow">Painel organizacional</p>
           <div className="rh-title-row">
             <h1>Visão Geral</h1>
             <span className="demo-data-badge">Dados demonstrativos</span>

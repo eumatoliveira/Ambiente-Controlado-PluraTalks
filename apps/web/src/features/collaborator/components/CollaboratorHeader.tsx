@@ -1,6 +1,7 @@
 import { Bars3Icon, BellIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 import { useMockApp } from '../../../app/providers/useMockApp';
+import { BrandLockup } from '../../../components/brand/BrandLockup';
 
 export function CollaboratorHeader({ onMenuToggle, menuOpen }: { onMenuToggle: () => void; menuOpen: boolean }) {
   const { state } = useMockApp();
@@ -19,7 +20,7 @@ export function CollaboratorHeader({ onMenuToggle, menuOpen }: { onMenuToggle: (
           <Bars3Icon aria-hidden="true" />
           <span className="sr-only">Abrir menu</span>
         </button>
-        <p className="collaborator-brand">PluraTalks</p>
+        <BrandLockup className="collaborator-brand" />
       </div>
 
       <div className="collaborator-header-actions">

@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 
+import { AuthShell } from '../components/AuthShell';
 import './login.css';
 
 export function ForgotPasswordPage() {
   return (
-    <main className="login-page">
+    <AuthShell>
       <section className="login-card" aria-labelledby="recovery-title">
         <header className="login-header">
-          <p className="login-brand">PluraTalks</p>
+          <p className="login-brand">Acesso seguro</p>
           <h1 id="recovery-title">Recuperar senha</h1>
           <p className="login-description">
             Esta funcionalidade ainda não está disponível.
@@ -23,6 +24,6 @@ export function ForgotPasswordPage() {
           Voltar ao login
         </Link>
       </section>
-    </main>
+    </AuthShell>
   );
 }

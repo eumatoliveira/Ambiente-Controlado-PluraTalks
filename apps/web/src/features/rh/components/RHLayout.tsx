@@ -16,6 +16,7 @@ import { NavLink } from 'react-router-dom';
 
 import { rhNavigation } from '../../../app/navigation';
 import { useMockApp } from '../../../app/providers/useMockApp';
+import { BrandLockup } from '../../../components/brand/BrandLockup';
 import '../pages/rh-dashboard.css';
 
 const navigationIcons: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
@@ -76,6 +77,8 @@ export function RHLayout({ children }: { children: ReactNode }) {
         >
           <XMarkIcon aria-hidden="true" />
         </button>
+
+        <BrandLockup tone="white" className="rh-brand" />
 
         <div className="rh-profile">
           <div className="rh-avatar" aria-hidden="true">{initials}</div>
