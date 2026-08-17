@@ -1,17 +1,35 @@
 :root {
-  --color-background: #fafafa;
-  --color-surface: #d9d9d9;
-  --color-input: #f7f7f7;
-  --color-text-primary: #111111;
-  --color-text-secondary: #333333;
-  --color-action: #171717;
-  --color-action-text: #ffffff;
-  --color-border: #c7c7c7;
-  --color-focus: #111111;
+  --plura-purple-light: #f9f6ff;
+  --plura-purple-medium: #d5cbf4;
+  --plura-purple-dark: #3f3a4f;
+  --plura-orange-light: #fff7f0;
+  --plura-orange-medium: #f1d3b8;
+  --plura-orange-accent: #fea85b;
+  --plura-orange-dark: #4f4338;
 
-  --font-family-sans: Inter, ui-sans-serif, system-ui, -apple-system,
+  --color-background: #f8f6f4;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f3f0f5;
+  --color-input: #ffffff;
+  --color-text-primary: #24212c;
+  --color-text-secondary: #5f596b;
+  --color-text-muted: #7d7688;
+  --color-action: var(--plura-purple-dark);
+  --color-action-hover: #2f2b3b;
+  --color-action-text: #ffffff;
+  --color-border: #ddd8e2;
+  --color-border-strong: #bdb5c7;
+  --color-focus: #6e55b7;
+  --color-success: #236a4b;
+  --color-success-soft: #e7f5ee;
+  --color-warning: #7a4c16;
+  --color-warning-soft: #fff3de;
+  --color-danger: #9f3434;
+  --color-danger-soft: #fff0f0;
+
+  --font-family-sans: Rubik, ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --radius-card: 1.5rem;
+  --radius-card: 1rem;
   --radius-control: 0.75rem;
-  --shadow-card: 0 1.25rem 3.75rem rgb(17 17 17 / 8%);
+  --shadow-card: 0 1rem 3rem rgb(63 58 79 / 8%);
 }

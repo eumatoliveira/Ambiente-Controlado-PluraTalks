@@ -15,8 +15,24 @@ body {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
 .app-loading {
@@ -26,4 +42,60 @@ input {
   background: var(--color-background);
   color: var(--color-text-secondary);
   font-size: 0.875rem;
+}
+
+.structural-back-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-control);
+  background: var(--color-action);
+  color: var(--color-action-text);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.structural-back-link svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.structural-route-note {
+  margin: 1rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+.structural-route-note code,
+.not-found-page code {
+  padding: 0.125rem 0.35rem;
+  border-radius: 0.35rem;
+  background: var(--color-surface-soft);
+}
+
+.not-found-page {
+  display: grid;
+  min-height: 100vh;
+  padding: 2rem;
+  place-content: center;
+  justify-items: start;
+  background: var(--plura-purple-light);
+}
+
+.not-found-page h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+}
+
+.not-found-page p:not(.ui-eyebrow) {
+  max-width: 38rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.not-found-page a {
+  color: var(--plura-purple-dark);
+  font-weight: 750;
 }

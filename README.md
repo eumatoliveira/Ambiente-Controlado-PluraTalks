@@ -7,11 +7,13 @@ Ambiente controlado do PluraTalks para evoluir e validar a experiência web ante
 - Frontend em React 19, TypeScript e Vite.
 - Formulários com React Hook Form e validação com Zod.
 - Navegação com React Router.
-- Dashboards com Recharts.
-- Testes de componentes e fluxos com Vitest e Testing Library.
+- Dashboards organizacionais e por área, com proteção de anonimato.
+- Gestão demonstrativa de organização, áreas, pessoas, plano, mensagens, comunicados, relatórios e playbooks.
+- Portal do colaborador com avaliações, RH Comunica, trilhas, jornada e preferências.
+- Testes unitários, de componentes e fluxos compartilhados com Vitest e Testing Library.
 - Estrutura reservada para API, banco de dados, pacotes compartilhados e documentação.
 
-> Este repositório ainda é um ambiente de desenvolvimento. A API e o banco de dados estão apenas estruturados, sem implementação funcional, e o dashboard de RH usa dados simulados locais.
+> Este repositório é um ambiente frontend demonstrativo. A API e o banco de dados estão apenas estruturados, sem implementação funcional. Todos os dados são fictícios e as alterações duram somente a sessão atual.
 
 ## Estrutura
 
@@ -52,9 +54,29 @@ A separação entre `apps/web`, `apps/api`, `packages` e `db` cria limites claro
 
 ### Frontend desacoplado para acelerar a validação
 
-Os fluxos e dashboards podem ser desenvolvidos, testados e avaliados sem depender de uma API disponível. O custo é que autenticação, recuperação de senha, persistência e indicadores ainda não representam comportamento ponta a ponta de produção.
+Os fluxos e dashboards podem ser desenvolvidos, testados e avaliados sem depender de uma API disponível. O custo é que autenticação, recuperação de senha, persistência e indicadores não representam comportamento ponta a ponta de produção.
 
-### Dados simulados no dashboard de RH
+### Estado compartilhado em Context API
+
+Conversas, comunicados, convites, relatórios, avaliações, trilhas e preferências usam um único provider em memória. Isso permite validar fluxos entre RH e colaborador sem listas artificialmente desconectadas e sem adicionar uma biblioteca de estado. Em contrapartida, um recarregamento reinicia o cenário, não há sincronização entre abas e o volume futuro de dados poderá justificar uma camada de cache mais especializada.
+
+### Anonimato aplicado no frontend
+
+Scores e distribuições são ocultados para coortes com menos de cinco respostas, inclusive em áreas, detalhes analíticos, alertas e relatórios. Essa barreira reduz exposição acidental no protótipo, mas não substitui agregação, autorização e fiscalização no servidor. Em produção, o backend deve ser a autoridade dessa regra.
+
+### Canais identificados separados de analytics anônimos
+
+Solicitações ao RH exibem a identidade fictícia do colaborador, enquanto respostas de pesquisas e testes nunca aparecem individualmente. A separação torna a expectativa de privacidade clara, mas exige que futuros contratos de API e eventos de observabilidade mantenham a mesma fronteira.
+
+### Capacidade contratada calculada localmente
+
+O consumo do plano soma pessoas ativas e convites pendentes, bloqueando novos convites quando não há vagas. Isso torna o comportamento testável, porém não possui garantia transacional: concorrência e cobrança devem continuar fora do frontend e ser validadas por serviços de produção.
+
+### Relatórios por impressão do navegador
+
+O preview usa CSS de impressão e `window.print`, permitindo salvar PDF sem serviço adicional ou envio de dados. O resultado final varia conforme navegador, sistema operacional e preferências de impressão; não há garantia de paginação idêntica nem PDF assinado pelo servidor.
+
+### Dados simulados em todo o produto
 
 Dados locais tornam a interface determinística e facilitam testes visuais e de componentes. Por outro lado, eles não validam integração, autorização, isolamento entre empresas, qualidade dos dados ou atualização em tempo real. Nenhuma decisão operacional deve usar esses números como dados reais.
 
@@ -70,9 +92,9 @@ React Hook Form e Zod reduzem código manual e centralizam regras de entrada com
 
 Recharts acelera a construção de visualizações responsivas e consistentes com React. A contrapartida é o aumento do bundle e uma flexibilidade menor para visualizações altamente customizadas ou grandes volumes de dados.
 
-### Testes unitários e de componentes nesta etapa
+### Testes de frontend nesta etapa
 
-Vitest e Testing Library dão feedback rápido sobre regras e interações da interface. Eles não substituem testes de integração com API, testes de contrato, acessibilidade automatizada nem validação ponta a ponta em navegadores reais, que deverão entrar antes de uma liberação de produção.
+Vitest e Testing Library cobrem regras, componentes e fluxos compartilhados, incluindo mensagem do colaborador, resposta do RH, capacidade do plano e anonimato com quatro e cinco respostas. Eles não substituem testes de contrato com API, segurança de backend nem uma auditoria formal de acessibilidade.
 
 ## Próximos passos recomendados
 
@@ -87,6 +109,8 @@ Vitest e Testing Library dão feedback rápido sobre regras e interações da in
 
 - Não há backend funcional neste snapshot.
 - Não há banco de dados conectado.
-- O dashboard de RH depende de dados simulados.
+- Todo o produto depende de dados simulados em memória.
+- Alterações são reiniciadas ao recarregar a página.
+- Autenticação e autorização são apenas demonstrativas.
 - Não há configuração de deploy ou pipeline de CI versionada.
 - A validação atual não comprova prontidão para produção.

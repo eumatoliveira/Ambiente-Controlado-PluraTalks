@@ -3,13 +3,16 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 
+import { MockAppProvider } from '../../../app/providers/MockAppProvider';
 import { ChartState } from '../components/ChartState';
 import { RHDashboardPage } from '../pages/RHDashboardPage';
 
 function renderDashboard() {
   return render(
     <MemoryRouter>
-      <RHDashboardPage />
+      <MockAppProvider>
+        <RHDashboardPage />
+      </MockAppProvider>
     </MemoryRouter>,
   );
 }

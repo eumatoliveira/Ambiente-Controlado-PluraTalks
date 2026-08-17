@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { EngagementAreaChart } from '../components/EngagementAreaChart';
 import { OrganizationalFactorsChart } from '../components/OrganizationalFactorsChart';
 import { OrganizationalHeatmap } from '../components/OrganizationalHeatmap';
@@ -8,6 +10,10 @@ import { dashboardMockData } from '../data/dashboardMockData';
 import './rh-dashboard.css';
 
 export function RHDashboardPage() {
+  useEffect(() => {
+    document.title = 'Visão Geral | PluraTalks';
+  }, []);
+
   return (
     <RHLayout>
       <header className="rh-page-header">

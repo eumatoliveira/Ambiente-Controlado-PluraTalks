@@ -1,4 +1,6 @@
 import {
+  AcademicCapIcon,
+  Bars3Icon,
   BellAlertIcon,
   ChartBarSquareIcon,
   ChatBubbleLeftRightIcon,
@@ -7,68 +9,118 @@ import {
   DocumentChartBarIcon,
   ShieldCheckIcon,
   UserGroupIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline';
-import type { ComponentType, ReactNode, SVGProps } from 'react';
+import { useState, type ComponentType, type ReactNode, type SVGProps } from 'react';
+import { NavLink } from 'react-router-dom';
 
-type NavigationItem = {
-  label: string;
-  icon: ComponentType<SVGProps<SVGSVGElement>>;
-  active?: boolean;
+import { rhNavigation } from '../../../app/navigation';
+import { useMockApp } from '../../../app/providers/useMockApp';
+import '../pages/rh-dashboard.css';
+
+const navigationIcons: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
+  'Visão Geral': ChartBarSquareIcon,
+  Pessoas: UserGroupIcon,
+  Áreas: UserGroupIcon,
+  Pesquisas: ClipboardDocumentCheckIcon,
+  Testes: DocumentChartBarIcon,
+  Alertas: BellAlertIcon,
+  Mensagens: ChatBubbleLeftRightIcon,
+  Comunicados: ChatBubbleLeftRightIcon,
+  Relatórios: DocumentChartBarIcon,
+  Playbooks: AcademicCapIcon,
+  Compliance: ShieldCheckIcon,
 };
 
-const navigationItems: NavigationItem[] = [
-  { label: 'Visão Geral', icon: ChartBarSquareIcon, active: true },
-  { label: 'Pessoas', icon: UserGroupIcon },
-  { label: 'Pesquisas', icon: ClipboardDocumentCheckIcon },
-  { label: 'Testes', icon: DocumentChartBarIcon },
-  { label: 'Alertas', icon: BellAlertIcon },
-  { label: 'Relatórios', icon: DocumentChartBarIcon },
-  { label: 'Compliance', icon: ShieldCheckIcon },
-  { label: 'Comunicados', icon: ChatBubbleLeftRightIcon },
-];
+export function RHLayout({ children }: { children: ReactNode }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { state } = useMockApp();
+  const initials = state.rhProfile.name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
 
-type RHLayoutProps = {
-  children: ReactNode;
-};
-
-export function RHLayout({ children }: RHLayoutProps) {
   return (
     <div className="rh-layout">
-      <aside className="rh-sidebar" aria-label="Navegação do RH">
+      <a className="rh-skip-link" href="#rh-content">Ir para o conteúdo</a>
+      <button
+        type="button"
+        className="rh-mobile-menu"
+        aria-controls="rh-sidebar"
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen(true)}
+      >
+        <Bars3Icon aria-hidden="true" /> Menu
+      </button>
+      {menuOpen ? (
+        <button
+          type="button"
+          className="rh-drawer-overlay"
+          aria-label="Fechar menu"
+          onClick={() => setMenuOpen(false)}
+        />
+      ) : null}
+
+      <aside
+        id="rh-sidebar"
+        className={`rh-sidebar${menuOpen ? ' rh-sidebar--open' : ''}`}
+        aria-label="Navegação do RH"
+      >
+        <button
+          type="button"
+          className="rh-drawer-close"
+          aria-label="Fechar menu"
+          onClick={() => setMenuOpen(false)}
+        >
+          <XMarkIcon aria-hidden="true" />
+        </button>
+
         <div className="rh-profile">
-          <div className="rh-avatar" aria-hidden="true">
-            CS
-          </div>
+          <div className="rh-avatar" aria-hidden="true">{initials}</div>
           <div className="rh-profile-copy">
-            <strong>Carolina</strong>
-            <span>Gestora de RH</span>
+            <strong>{state.rhProfile.name}</strong>
+            <span>{state.rhProfile.roleTitle}</span>
           </div>
         </div>
 
         <nav className="rh-navigation">
-          {navigationItems.map(({ label, icon: Icon, active }) => (
-            <span
-              key={label}
-              className={`rh-nav-item${active ? ' rh-nav-item--active' : ''}`}
-              aria-current={active ? 'page' : undefined}
-              aria-disabled={active ? undefined : true}
-              title={label}
-            >
-              <Icon aria-hidden="true" />
-              <span className="rh-nav-label">{label}</span>
-            </span>
-          ))}
+          {rhNavigation.map(({ label, to, end }) => {
+            const Icon = navigationIcons[label];
+            return (
+              <NavLink
+                key={label}
+                to={to}
+                end={end}
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  `rh-nav-item${isActive ? ' rh-nav-item--active' : ''}`
+                }
+                title={label}
+              >
+                <Icon aria-hidden="true" />
+                <span className="rh-nav-label">{label}</span>
+              </NavLink>
+            );
+          })}
         </nav>
 
         <div className="rh-sidebar-footer">
-          <span className="rh-nav-item" aria-disabled="true">
+          <NavLink
+            className={({ isActive }) =>
+              `rh-nav-item${isActive ? ' rh-nav-item--active' : ''}`
+            }
+            to="/rh/configuracoes"
+            onClick={() => setMenuOpen(false)}
+          >
             <Cog6ToothIcon aria-hidden="true" />
             <span className="rh-nav-label">Configurações</span>
-          </span>
+          </NavLink>
         </div>
       </aside>
 
-      <main className="rh-main">{children}</main>
+      <main id="rh-content" className="rh-main" tabIndex={-1}>{children}</main>
     </div>
   );
 }
